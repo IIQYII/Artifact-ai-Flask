@@ -1,0 +1,20 @@
+/* 确保 AI 输出的格式正确 */
+#narration-output {
+    white-space: pre-wrap; /* 保持 AI 输出的换行和空格 */
+    font-size: 1rem;
+    line-height: 1.6;
+    font-family: 'Inter', sans-serif;
+}
+
+/* 状态信息样式 */
+#status-message.text-red-600 {
+    color: #dc2626; /* 红色 */
+}
+
+#status-message.text-yellow-600 {
+    color: #d97706; /* 黄色 */
+}
+
+#status-message.text-green-600 {
+    color: #16a34a; /* 绿色 */
+}

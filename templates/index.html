@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>古代文物对话器</title>
+    <link rel="icon" href="{{ url_for('static', filename='images/pig_good.png') }}" type="image/png">
+    <!-- 引入样式文件 -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <!-- 引入 Tailwind CSS (可选，用于美化) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* 确保自定义 CSS 也能工作 */
+        #narration-output {
+            white-space: pre-wrap; /* 保持 AI 输出的格式 */
+        }
+    </style>
+</head>
+<body class="bg-gray-100 min-h-screen flex flex-col items-center p-4">
+
+    <header class="w-full max-w-4xl bg-blue-900 text-white rounded-xl shadow-lg mb-6 p-6">
+        <h1 class="text-3xl font-bold flex items-center">
+            <img src="{{ url_for('static', filename='images/pig_icon.gif') }}" alt="猪图标" class="h-10 w-10 mr-3 inline-block">
+            古代文物对话器
+        </h1>
+        <p class="mt-2 text-blue-200">上传文物图片，获取 AI 识别和生动讲解。</p>
+    </header>
+
+    <main class="w-full max-w-4xl bg-white rounded-xl shadow-2xl p-8">
+        <section id="upload-section" class="mb-8">
+            <h2 class="text-2xl font-semibold mb-4 text-gray-800">上传文物图片</h2>
+            <div class="flex flex-col md:flex-row gap-4 items-center justify-center">
+                <input type="file" id="image-upload" accept="image/*" class="border p-2 rounded-lg file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100 cursor-pointer">
+                <button id="submit-image" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-6 rounded-lg transition duration-150 shadow-md">
+                    识别并讲解
+                </button>
+            </div>
+            <p id="status-message" class="mt-4 font-medium"></p> 
+        </section>
+
+        <section id="results-section" style="display:none;" class="border-t pt-8">
+            <h2 class="text-2xl font-semibold mb-4 text-gray-800">识别结果与讲解</h2>
+            
+            <div class="grid md:grid-cols-2 gap-6">
+                <!-- 文物信息显示区域 (左侧) -->
+                <div class="bg-gray-50 p-6 rounded-lg shadow-inner">
+                    <h3 class="text-xl font-medium mb-3 text-indigo-700 border-b pb-2">文物信息 (识别结果)</h3>
+                    <div id="artifact-info-details" class="text-left text-gray-600 space-y-2">
+                        <!-- JSON 数据将在这里格式化显示 -->
+                    </div>
+                </div>
+
+                <!-- AI 讲解显示区域 (右侧) -->
+                <div class="bg-green-50 p-6 rounded-lg shadow-inner">
+                    <h3 class="text-xl font-medium mb-3 text-green-700 border-b pb-2">AI 讲解</h3>
+                    <div id="narration-output" class="text-left text-gray-700 leading-relaxed">
+                        <!-- AI 返回的字符串文本将在这里显示 -->
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="mt-8 text-gray-500 text-sm">
+        <p>&copy; 谁来起个名 </p>
+    </footer>
+
+    <!-- 引入 JavaScript 文件 -->
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>

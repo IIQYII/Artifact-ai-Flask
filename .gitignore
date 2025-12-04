@@ -1,0 +1,117 @@
+# Python项目.gitignore文件
+# 防止API密钥和敏感信息泄露
+
+# 配置文件 - 保护API密钥
+config.py
+config_local.py
+.env
+.env.local
+.env.production
+.env.development
+*.env
+
+# 临时文件目录
+temp/
+tmp/
+*.tmp
+*.temp
+
+# Python缓存文件
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+pip-wheel-metadata/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# 虚拟环境
+venv/
+env/
+ENV/
+
+# IDE文件
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# 操作系统文件
+.DS_Store
+Thumbs.db
+
+# 日志文件
+*.log
+logs/
+
+# 数据库文件
+*.db
+*.sqlite3
+
+# 测试文件
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+.nox/
+
+# 覆盖率报告
+.coverage
+.coverage.*
+coverage.xml
+*.cover
+.hypothesis/
+.pytest_cache/
+
+# 翻译文件
+*.mo
+*.pot
+
+# 文档文件
+docs/_build/
+
+# 包文件
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
+
+# 备份文件
+*.bak
+*.backup
+*.old
+
+# 特定于Flask的文件
+instance/
+.webassets-cache
+
+# 特定于Windows的文件
+[Dd]esktop.ini
+
+# 特定于macOS的文件
+.AppleDouble
+.LSOverride
+
+# 图像处理临时文件
+*.pyc
