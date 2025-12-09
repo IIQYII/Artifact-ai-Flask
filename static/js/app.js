@@ -6,6 +6,7 @@ document.getElementById('submit-image').addEventListener('click', async () => {
     const resultsSection = document.getElementById('results-section');
     const artifactInfoDetails = document.getElementById('artifact-info-details');
     const narrationOutput = document.getElementById('narration-output');
+    const BASE_URL = 'http://8.134.131.114/';
 
     // 1. 检查文件是否已选择
     const file = fileInput.files[0];
@@ -28,8 +29,8 @@ document.getElementById('submit-image').addEventListener('click', async () => {
     formData.append('image', file);
     
     // API 端点配置 (来自 Flask 后端)
-    const RECOGNITION_ENDPOINT = '/api/image-recognition';
-    const NARRATION_ENDPOINT = '/api/artifact-narration';
+    const RECOGNITION_ENDPOINT = BASE_URL + '/api/image-recognition';
+    const NARRATION_ENDPOINT = BASE_URL + '/api/artifact-narration';
 
     try {
         // --- 步骤 1: 调用图像识别接口 ---
