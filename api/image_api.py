@@ -60,10 +60,9 @@ def image_recognition():
                     'success': True,
                     'message': '图像识别成功',
                     'data': {
-                        'artifact_type': '文物',  # 文物类型
-                        'artifact_name': best_match['name'],  # 文物名称
+                        'name': best_match['name'],  # 文物名称
                         'era': best_match['dynasty'],  # 年代
-                        'description': best_match['intro'],  # 描述
+                        'intro': best_match['intro'],  # 描述
                         'confidence': best_match['confidence'],  # 识别置信度
                     },
                     'all_results': results  # 包含所有匹配结果
