@@ -1,4 +1,10 @@
-Flask==2.3.3
-Werkzeug==2.3.7
-dashscope==1.14.0
+Flask
+Werkzeug
+dashscope
 gunicorn
+torch
+openai-clip
+Pillow
+pandas
+numpy
+torchvision

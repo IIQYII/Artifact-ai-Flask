@@ -1,9 +1,13 @@
 from flask import Blueprint, request, jsonify
 from config import FRONTEND_CONFIG
 import os
+from .artifact_recognizer import ArtifactRecognizer
 
 # 创建图像识别API蓝图
 image_api = Blueprint('image_api', __name__)
+
+# 初始化图像识别器
+recognizer = ArtifactRecognizer()
 
 @image_api.route('/', methods=['POST'])
 def image_recognition():
@@ -41,31 +45,42 @@ def image_recognition():
                 'code': 400
             }), 400
         
-        # TODO: 这里需要集成图像识别模块
-        # 示例处理流程：
-        # 1. 保存上传的图片到临时目录
-        # 2. 调用图像识别算法处理图片
-        # 3. 返回识别结果
+        # 使用图像识别器处理图片
+        image_bytes = image_file.read()
+        recognition_result = recognizer.recognize(image_bytes)
         
-        # 临时保存文件（示例）
-        filename = f"temp_{os.urandom(8).hex()}.jpg"
-        temp_path = os.path.join('temp', filename)
-        os.makedirs('temp', exist_ok=True)
-        image_file.save(temp_path)
-        
-        # 返回数据格式的示例(当然只是临时的，具体还要看怎么实现的xd)
-        result = {
-            'success': True,
-            'message': '图像识别成功',
-            'data': {
-                'artifact_type': '青铜器',  # 文物类型
-                'artifact_name': '青铜鼎',  # 文物名称
-                'era': '商代',  # 年代
-                'description': '这是一件商代青铜鼎，具有重要的历史价值...',  # 描述
-                'confidence': 0.37,  # 识别置信度
-            },
-            'image_path': temp_path  # 临时文件路径（实际使用时可能需要删除）
-        }
+        # 转换结果格式以匹配现有API结构
+        if recognition_result.get('success'):
+            # 成功识别到文物
+            results = recognition_result['result']
+            if results:
+                # 返回最匹配的结果
+                best_match = results[0]
+                result = {
+                    'success': True,
+                    'message': '图像识别成功',
+                    'data': {
+                        'artifact_type': '文物',  # 文物类型
+                        'artifact_name': best_match['name'],  # 文物名称
+                        'era': best_match['dynasty'],  # 年代
+                        'description': best_match['intro'],  # 描述
+                        'confidence': best_match['confidence'],  # 识别置信度
+                    },
+                    'all_results': results  # 包含所有匹配结果
+                }
+            else:
+                result = {
+                    'success': False,
+                    'error': '未识别到已知文物',
+                    'code': 404
+                }
+        else:
+            # 识别失败
+            result = {
+                'success': False,
+                'error': recognition_result.get('error', '识别失败'),
+                'code': 500
+            }
         
         return jsonify(result)
         
