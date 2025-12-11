@@ -58,7 +58,8 @@ python app.py
 ```
 
 ### 3. 访问服务
-- 服务地址: http://localhost:5000
+- 本地地址: http://localhost:5000
+- 服务地址: http://8.134.131.114/
 
 ## 配置说明
 配置文件`config.py`包含：
