@@ -49,7 +49,7 @@ def test_image_recognition():
         
         # 测试每张图片
         success_count = 0
-        for i, image_path in enumerate(test_images[:3]):  # 只测试前3张图片
+        for i, image_path in enumerate(test_images[:]):
             print(f"\n--- 测试图片 {i+1}: {os.path.basename(image_path)} ---")
             
             try:
@@ -95,9 +95,9 @@ def test_image_recognition():
         print("\n" + "=" * 50)
         print("测试总结")
         print("=" * 50)
-        print(f"总测试图片数: {min(3, len(test_images))}")
+        print(f"总测试图片数: {min(100, len(test_images))}")
         print(f"成功识别数: {success_count}")
-        print(f"成功率: {success_count/min(3, len(test_images))*100:.1f}%")
+        print(f"成功率: {success_count/min(100, len(test_images))*100:.1f}%")
         
         if success_count > 0:
             print("✓ 图像识别功能测试通过")
